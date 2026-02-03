@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hard Vision Studio</title>
+</head>
+
+<body
+    class="bg-brand-dark text-brand-text overflow-x-hidden selection:bg-brand-accent selection:text-brand-dark flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-brand-dark/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <h1 class="text-2xl font-bold tracking-tighter">HARD<span class="text-brand-accent">VISION</span></h1>
+            <div class="hidden md:flex gap-8">
+                <a href="#home" class="text-sm font-medium hover:text-brand-accent transition-colors">WORK</a>
+                <a href="#about" class="text-sm font-medium hover:text-brand-accent transition-colors">ABOUT</a>
+                <a href="#contact" class="text-sm font-medium hover:text-brand-accent transition-colors">CONTACT</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home / Hero Section -->
+        <section id="home"
+            class="h-[80vh] flex flex-col justify-center items-center relative overflow-hidden -mt-24 pt-24">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-secondary/20 via-brand-dark to-brand-dark z-0">
+            </div>
+            <h2
+                class="text-6xl md:text-9xl font-black tracking-tighter z-10 animate-slide-up bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-600 text-center">
+                VISIONARY<br />DESIGN
+            </h2>
+            <p class="mt-8 text-xl text-gray-400 z-10 max-w-lg text-center animate-fade-in opacity-0"
+                style="animation-delay: 0.3s">
+                Premium 3D Assets & Graphic Design Portfolio
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-12 px-6 md:px-12 relative z-10">
+            <h3 class="text-4xl font-bold mb-16 text-center tracking-tight"><span
+                    class="text-brand-accent">LATEST</span> WORK</h3>
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="max-w-4xl mx-auto px-6 py-20 min-h-[60vh] flex flex-col justify-center">
+            <h2 class="text-5xl md:text-7xl font-bold mb-8 text-brand-accent">WHO AM I?</h2>
+            <div class="prose prose-invert prose-lg">
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    I am a digital artisan specializing in high-fidelity 3D assets and immersive graphic design.
+                    With a passion for cyberpunk aesthetics and industrial precision, I bridge the gap between concept
+                    and reality.
+                </p>
+                <p class="mt-6 text-xl text-gray-300 leading-relaxed">
+                    My toolset includes Blender, Three.js, and Adobe Creative Suite, allowing me to deliver complete
+                    visual experiences for web and media.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact"
+            class="max-w-4xl mx-auto px-6 py-20 min-h-[60vh] flex flex-col justify-center items-center text-center">
+            <h2 class="text-5xl md:text-7xl font-bold mb-8">LET'S <span class="text-brand-accent">CONNECT</span></h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl">
+                Ready to elevate your project? I'm available for freelance work and collaborations.
+            </p>
+            <a href="mailto:contact@hardvision.studio"
+                class="text-3xl md:text-5xl font-mono hover:text-brand-accent transition-colors border-b-2 border-transparent hover:border-brand-accent pb-2">
+                contact@hardvision.studio
+            </a>
+
+            <div class="flex gap-8 mt-16">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">ArtStation</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-gray-600 text-sm mt-auto border-t border-brand-secondary/30">
+        &copy; 2026 Hard Vision Studio. All rights reserved.
+    </footer>
+
+    <!-- 3D Viewer Modal (Global) -->
+    <div id="viewer-modal"
+        class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-500 flex items-center justify-center">
+        <button id="close-viewer"
+            class="absolute top-6 right-6 text-white text-4xl hover:text-brand-accent transition-colors z-50">&times;</button>
+        <div class="relative w-full h-full" id="canvas-container">
+            <div id="loader" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="w-12 h-12 border-4 border-brand-secondary border-t-brand-accent rounded-full animate-spin">
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-12 left-0 w-full text-center pointer-events-none">
+            <h2 id="modal-title" class="text-3xl font-bold text-white mb-2">Project Title</h2>
+            <p class="text-gray-400 text-sm">Left Click: Rotate &bull; Right Click: Pan &bull; Scroll: Zoom &bull; <span
+                    class="text-brand-accent">Double Click: Focus</span></p>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
