@@ -22,10 +22,17 @@ const projects = [
     },
     {
         id: 3,
-        title: 'Neon City',
-        description: 'Environmental design exploration.',
-        model: null,
-        color: 'from-amber-500 to-red-600'
+        title: 'Nox Racket',
+        description: 'Professional padel racket visualization.',
+        model: '/projects/nox_racket.glb',
+        color: 'from-slate-900 to-red-600' // Nox style: Carbon/Red
+    },
+    {
+        id: 4,
+        title: 'Old Fire Extinguisher',
+        description: 'Vintage industrial safety equipment.',
+        model: '/projects/fire.glb',
+        color: 'from-orange-700 to-red-800' // Vintage/Rustic Red
     }
 ];
 
@@ -123,6 +130,7 @@ function initThree(modelPath, container) {
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.0; // Standard exposure for better saturation
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         container.appendChild(renderer.domElement);
 
@@ -131,15 +139,31 @@ function initThree(modelPath, container) {
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
 
-        // 5. Environment & Lights
+        // Limit Zoom
+        controls.minDistance = 6.5;
+        controls.maxDistance = 15;
+
+        // 5. Environment & Lights (Rich Studio Setup)
         const pmremGenerator = new THREE.PMREMGenerator(renderer);
         scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        // 3-Point Studio Lighting (Balanced for Richness)
+        // Lower ambient = Darker shadows = "Richer" look
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         scene.add(ambientLight);
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
-        dirLight.position.set(5, 10, 7.5);
-        scene.add(dirLight);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.5); // Main
+        keyLight.position.set(5, 10, 7.5);
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.7); // Subtle Fill
+        fillLight.position.set(-5, 5, 5);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xffffff, 1.0); // Edge definition
+        rimLight.position.set(0, 5, -10);
+        scene.add(rimLight);
+
 
         // Debug Helpers - Removed for Studio Look
         // scene.add(new THREE.AxesHelper(10));

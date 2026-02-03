@@ -35,9 +35,16 @@
         <!-- Home / Hero Section -->
         <section id="home"
             class="h-[80vh] flex flex-col justify-center items-center relative overflow-hidden -mt-24 pt-24">
-            <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-secondary/20 via-brand-dark to-brand-dark z-0">
+            <div class="absolute inset-0 -z-10">
+                <picture>
+                    <source media="(min-width: 1280px)" srcset="/images/hero_bg.jpg">
+                    <source media="(min-width: 768px)" srcset="/images/hero_bg.jpg">
+                    <img src="/images/hero_bg.jpg" alt="Construction Skyline" class="w-full h-full object-cover"
+                        fetchpriority="high">
+                </picture>
+                <div className="absolute inset-0 bg-[#131210]/30"></div>
             </div>
+
             <h2
                 class="text-6xl md:text-9xl font-black tracking-tighter z-10 animate-slide-up bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-600 text-center">
                 VISIONARY<br />DESIGN
