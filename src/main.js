@@ -11,28 +11,32 @@ const projects = [
         title: 'Water Pump',
         description: 'High fidelity industrial 3D model.',
         model: '/projects/water_pump.glb',
-        color: 'from-blue-600 to-cyan-500'
+        color: 'from-blue-600 to-cyan-500',
+        video: '/videos/water_pump.mp4'
     },
     {
         id: 2,
         title: 'F1 Racing Tyre',
         description: 'High performance soft compound tyre.',
         model: '/projects/f1_tyre.glb',
-        color: 'from-red-600 to-orange-500' // F1-like colors
+        color: 'from-red-600 to-orange-500', // F1-like colors
+        video: '/videos/f1_tyre.mp4'
     },
     {
         id: 3,
         title: 'Nox Racket',
         description: 'Professional padel racket visualization.',
         model: '/projects/nox_racket.glb',
-        color: 'from-slate-900 to-red-600' // Nox style: Carbon/Red
+        color: 'from-slate-900 to-red-600', // Nox style: Carbon/Red
+        video: '/videos/nox_padel.mp4'
     },
     {
         id: 4,
         title: 'Old Fire Extinguisher',
         description: 'Vintage industrial safety equipment.',
         model: '/projects/fire.glb',
-        color: 'from-orange-700 to-red-800' // Vintage/Rustic Red
+        color: 'from-orange-700 to-red-800', // Vintage/Rustic Red
+        video: '/videos/fire-extinguisher.mp4'
     }
 ];
 
@@ -54,12 +58,16 @@ function initProjects() {
 
     projects.forEach(project => {
         const card = document.createElement('div');
-        card.className = `group relative h-96 rounded-2xl overflow-hidden cursor-pointer bg-brand-secondary border border-transparent hover:border-brand-accent/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,242,255,0.2)]`;
+        card.className = `group relative h-96 rounded-2xl overflow-hidden cursor-pointer bg-[#212121] border border-transparent hover:border-brand-accent/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,242,255,0.2)]`;
+
+        let backgroundContent = `<div class="absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity"></div>`;
+        if (project.video) {
+            backgroundContent = `<video src="${project.video}" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-contain group-hover:opacity-80 transition-opacity"></video>`;
+        }
+
         card.innerHTML = `
-            <div class="absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-                <h4 class="text-4xl font-black text-white/10 group-hover:text-white/20 transition-colors uppercase select-none text-center p-4 leading-none">${project.title}</h4>
-            </div>
+            ${backgroundContent}
+        
             <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent">
                 <h4 class="text-2xl font-bold text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 capitalize">${project.title}</h4>
                 <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">${project.description}</p>
